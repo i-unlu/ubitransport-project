@@ -1,0 +1,13 @@
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> vendor ###
+/vendor
+###< vendor ###
+
+###> var ###
+/var
+###< var ###

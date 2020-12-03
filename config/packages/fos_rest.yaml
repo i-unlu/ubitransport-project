@@ -1,0 +1,22 @@
+# Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
+fos_rest:
+    #param_fetcher_listener: force
+    body_listener: true
+    format_listener:
+        enabled: true
+        rules:
+            # setting a priority to */* basically means any format will be matched
+            - { path: '^/', priorities: [ 'json', '*/*'], fallback_format: json, prefer_extension: false }
+    view:
+        view_response_listener: force
+        formats:
+            json: true
+            xml: false
+            rss: false
+            yml: false
+    serializer:
+        serialize_null: true
+    body_converter:
+        enabled: true
+        validate: true
+        validation_errors_argument: errors

@@ -1,0 +1,13 @@
+student:
+    resource: App\Controller\StudentController
+    type:     annotation
+    prefix:   /student
+    trailing_slash_on_root: false
+    defaults: { _format: json }
+
+subject_note:
+    resource: App\Controller\SubjectNoteController
+    type:     annotation
+    prefix:   /subject-note
+    trailing_slash_on_root: false
+    defaults: { _format: json }
