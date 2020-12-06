@@ -52,8 +52,12 @@ class StudentController extends AbstractFOSRestController
      *
      * @View()
      */
-    public function addStudent(Student $student, EntityManagerInterface $entityManager, ConstraintViolationListInterface $errors, RequestBodyViolationHelper $requestBodyViolationHelper): FostRestView
-    {
+    public function addStudent(
+        Student $student,
+        EntityManagerInterface $entityManager,
+        ConstraintViolationListInterface $errors,
+        RequestBodyViolationHelper $requestBodyViolationHelper
+    ): FostRestView {
         $violationView = $requestBodyViolationHelper->handle($errors);
 
         if (null !== $violationView) {
@@ -112,8 +116,13 @@ class StudentController extends AbstractFOSRestController
      *
      * @View()
      */
-    public function editStudent(Student $studentToEdit, Student $studentInformations, EntityManagerInterface $entityManager, ConstraintViolationListInterface $errors, RequestBodyViolationHelper $requestBodyViolationHelper): FostRestView
-    {
+    public function editStudent(
+        Student $studentToEdit,
+        Student $studentInformations,
+        EntityManagerInterface $entityManager,
+        ConstraintViolationListInterface $errors,
+        RequestBodyViolationHelper $requestBodyViolationHelper
+    ): FostRestView {
         $violationView = $requestBodyViolationHelper->handle($errors);
 
         if (null !== $violationView) {
@@ -211,8 +220,10 @@ class StudentController extends AbstractFOSRestController
      *
      * @View()
      */
-    public function getAverageNoteByStudent(Student $student, SubjectNoteRepository $subjectNoteRepository): FostRestView
-    {
+    public function getAverageNoteByStudent(
+        Student $student,
+        SubjectNoteRepository $subjectNoteRepository
+    ): FostRestView {
         return $this->view($subjectNoteRepository->getAverageNote($student));
     }
 }

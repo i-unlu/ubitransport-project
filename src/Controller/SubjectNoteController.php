@@ -55,8 +55,12 @@ class SubjectNoteController extends AbstractFOSRestController
      *
      * @View()
      */
-    public function addSubjectNote(SubjectNote $subjectNote, EntityManagerInterface $entityManager, ValidatorInterface $validator, RequestBodyViolationHelper $requestBodyViolationHelper): FostRestView
-    {
+    public function addSubjectNote(
+        SubjectNote $subjectNote,
+        EntityManagerInterface $entityManager,
+        ValidatorInterface $validator,
+        RequestBodyViolationHelper $requestBodyViolationHelper
+    ): FostRestView {
         $violationView = $requestBodyViolationHelper->handle($validator->validate($subjectNote));
 
         if (null !== $violationView) {

@@ -2,7 +2,19 @@
 
 namespace App\Model;
 
-class SubjectNoteModel
+use OpenApi\Annotations as OA;
+
+/**
+ * @OA\Schema(
+ *     schema="SubjectNoteInformation",
+ *     type="object",
+ *     description="Subject note information model",
+ *     @OA\Property(type="string", property="subject", example="Mathematique"),
+ *     @OA\Property(type="float", property="note", example="12"),
+ *     @OA\Property(type="integer", property="student_id", example="1")
+ * )
+ */
+class SubjectNoteInformationModel
 {
     /**
      * @var string

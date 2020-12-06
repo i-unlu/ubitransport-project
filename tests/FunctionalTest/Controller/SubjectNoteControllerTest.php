@@ -4,7 +4,7 @@ namespace Tests\FunctionalTest\App\Controller;
 
 use App\DataFixtures\AverageNoteFixtures;
 use App\Entity\Student;
-use App\Model\SubjectNoteModel;
+use App\Model\SubjectNoteInformationModel;
 use JMS\Serializer\Serializer;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -43,7 +43,7 @@ class SubjectNoteControllerTest extends WebTestCase
         $studentAdded = \json_decode($this->client->getResponse()->getContent(), true);
         $studentIdAdded = (int) $studentAdded['id'];
 
-        $subjectNoteModel = new SubjectNoteModel('Maths', 18.0, $studentIdAdded);
+        $subjectNoteModel = new SubjectNoteInformationModel('Maths', 18.0, $studentIdAdded);
         $jsonSubjectNote = $this->serializer->serialize($subjectNoteModel, 'json');
 
         $this->client->request('POST', '/subject-note', [], [], ['CONTENT_TYPE' => 'application/json'], $jsonSubjectNote);

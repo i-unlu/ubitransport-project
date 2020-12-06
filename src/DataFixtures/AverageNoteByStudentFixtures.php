@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AverageNoteByStudentFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $student1 = (new Student())
             ->setLastName('UNLU')
