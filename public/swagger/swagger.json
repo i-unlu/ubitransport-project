@@ -221,10 +221,14 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "average"
+                                    ],
                                     "properties": {
                                         "average": {
                                             "description": "Get average note for all students.",
-                                            "type": "float"
+                                            "type": "float",
+                                            "example": "11.89"
                                         }
                                     },
                                     "type": "object"
@@ -326,6 +330,24 @@
             },
             "SubjectNoteInformation": {
                 "description": "Subject note informations",
+                "properties": {
+                    "subject": {
+                        "type": "string",
+                        "example": "Mathematique"
+                    },
+                    "note": {
+                        "type": "float",
+                        "example": "12"
+                    },
+                    "student_id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "AverageNote": {
+                "description": "Average note",
                 "properties": {
                     "subject": {
                         "type": "string",

@@ -26,4 +26,13 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(type="float", property="note", example="12"),
  *     @OA\Property(type="integer", property="student_id", example="1")
  * )
+ *
+ * @OA\Schema(
+ *     schema="AverageNote",
+ *     type="object",
+ *     description="Average note",
+ *     @OA\Property(type="string", property="subject", example="Mathematique"),
+ *     @OA\Property(type="float", property="note", example="12"),
+ *     @OA\Property(type="integer", property="student_id", example="1")
+ * )
  */

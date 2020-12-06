@@ -69,7 +69,7 @@ class SubjectNoteControllerTest extends WebTestCase
             $this->client->getResponse()->getStatusCode()
         );
 
-        $response = \json_decode($this->client->getResponse()->getContent(), true)[0];
+        $response = \json_decode($this->client->getResponse()->getContent(), true);
         $this->assertEquals(11.5, (float) $response['average']);
     }
 }

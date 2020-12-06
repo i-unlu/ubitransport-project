@@ -193,10 +193,8 @@ class StudentController extends AbstractFOSRestController
      *      response=200,
      *      description="Get average note calculated",
      *      @OA\JsonContent(
-     *          @OA\Property(
-     *              property="average",
-     *              type="float"
-     *          )
+     *          required={"average"},
+     *         @OA\Property(property="average", type="float", example="11.89")
      *     )
      *  ),
      *  @OA\Response(

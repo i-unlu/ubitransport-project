@@ -30,13 +30,15 @@ class SubjectNoteRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('s');
 
-        return $qb
+        $average = $qb
             ->select('COALESCE(AVG(s.note), 0.00) AS average')
             ->andWhere('s.student = :student')
             ->setParameter('student', $student)
             ->getQuery()
             ->getScalarResult()
         ;
+
+        return \reset($average);
     }
 
     /**
@@ -48,10 +50,12 @@ class SubjectNoteRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('s');
 
-        return $qb
+        $average = $qb
             ->select('COALESCE(AVG(s.note), 0.00) AS average')
             ->getQuery()
             ->getScalarResult()
         ;
+
+        return \reset($average);
     }
 }
