@@ -28,7 +28,7 @@ class StudentController extends AbstractFOSRestController
      *  tags={"Student"},
      *  operationId="addStudent",
      *  @OA\RequestBody(
-     *      description="Student informations to edit",
+     *      description="Student informations to add",
      *      required=true,
      *      @OA\JsonContent(ref="#/components/schemas/Student"),
      *  ),
@@ -39,8 +39,7 @@ class StudentController extends AbstractFOSRestController
      *  ),
      *  @OA\Response(
      *      response="422",
-     *      description="Request body not matching with student model",
-     *      @OA\JsonContent(ref="#/components/schemas/ErrorModel")
+     *      description="Request body not matching with student model"
      *  )
      * )
      *
@@ -74,7 +73,6 @@ class StudentController extends AbstractFOSRestController
      *  path="/student/{studentToEdit}",
      *  summary="Edit a student",
      *  description="Edit a student",
-     *  security={{"bearer":{}}},
      *  tags={"Student"},
      *  operationId="editStudent",
      *  @OA\Parameter(
@@ -141,7 +139,6 @@ class StudentController extends AbstractFOSRestController
      *  path="/student/{studentToDelete}",
      *  summary="Delete a student",
      *  description="Delete a student",
-     *  security={{"bearer":{}}},
      *  tags={"Student"},
      *  operationId="deleteStudent",
      *  @OA\Parameter(
@@ -149,9 +146,7 @@ class StudentController extends AbstractFOSRestController
      *      in="path",
      *      description="student to delete",
      *      required=true,
-     *      @OA\Schema(
-     *          ref="#/components/schemas/Student"
-     *      ),
+     *      @OA\Schema(ref="#/components/schemas/Student")
      *  ),
      *  @OA\Response(
      *      response=204,
@@ -187,7 +182,6 @@ class StudentController extends AbstractFOSRestController
      *  path="/student/{student}/average-note",
      *  summary="Get average note for a student",
      *  description="Get average note for a student",
-     *  security={{"bearer":{}}},
      *  tags={"Student"},
      *  operationId="getAverageNoteByStudent",
      *  @OA\Parameter(
@@ -195,9 +189,7 @@ class StudentController extends AbstractFOSRestController
      *      in="path",
      *      description="student for which the average is calculated",
      *      required=true,
-     *      @OA\Schema(
-     *          ref="#/components/schemas/Student"
-     *      ),
+     *      @OA\Schema(ref="#/components/schemas/Student")
      *  ),
      *  @OA\Response(
      *      response=200,
