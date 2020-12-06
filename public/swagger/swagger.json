@@ -1,0 +1,347 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "AUSG",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://api.ubitransport.student-grading.fr/v1",
+            "description": "Api Ubitransport Student Grading"
+        }
+    ],
+    "paths": {
+        "/student": {
+            "post": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Add a student",
+                "description": "Add a student",
+                "operationId": "addStudent",
+                "requestBody": {
+                    "description": "Student information model",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentInformation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Student"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Request body not matching with student model"
+                    }
+                }
+            }
+        },
+        "/student/{studentToEdit}": {
+            "put": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Edit a student",
+                "description": "Edit a student",
+                "operationId": "editStudent",
+                "parameters": [
+                    {
+                        "name": "studentToEdit",
+                        "in": "path",
+                        "description": "student to edit",
+                        "required": true,
+                        "schema": {
+                            "description": "identifier of an student to edit",
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Student information model",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentInformation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Student edited"
+                    },
+                    "404": {
+                        "description": "studentToEdit identifier in path no found"
+                    },
+                    "422": {
+                        "description": "Request body not matching with student information model"
+                    }
+                }
+            }
+        },
+        "/student/{studentToDelete}": {
+            "delete": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Delete a student",
+                "description": "Delete a student",
+                "operationId": "deleteStudent",
+                "parameters": [
+                    {
+                        "name": "studentToDelete",
+                        "in": "path",
+                        "description": "student to delete",
+                        "required": true,
+                        "schema": {
+                            "description": "identifier of an student to delete",
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Student deleted"
+                    },
+                    "404": {
+                        "description": "studentToDelete identifier in path no found"
+                    }
+                }
+            }
+        },
+        "/student/{student}/average-note": {
+            "get": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Get average note for a student",
+                "description": "Get average note for a student",
+                "operationId": "getAverageNoteByStudent",
+                "parameters": [
+                    {
+                        "name": "student",
+                        "in": "path",
+                        "description": "student for which the average is calculated",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Student"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get average note calculated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "average": {
+                                            "description": "Get average note for a student.",
+                                            "type": "float"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Student no found"
+                    }
+                }
+            }
+        },
+        "/subject-note": {
+            "post": {
+                "tags": [
+                    "SubjectNote"
+                ],
+                "summary": "Add a subject note",
+                "description": "Add a subject note",
+                "operationId": "addSubjectNote",
+                "requestBody": {
+                    "description": "Subject note information model",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SubjectNoteInformation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Subject note added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SubjectNote"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Student identifier in request body no found"
+                    },
+                    "422": {
+                        "description": "Request body not matching with student model"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/subject-note/average-note": {
+            "get": {
+                "tags": [
+                    "SubjectNote"
+                ],
+                "summary": "Get average note for all students",
+                "description": "Get average note for all students",
+                "operationId": "getAverageNote",
+                "responses": {
+                    "200": {
+                        "description": "Get average note calculated for all students.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "average": {
+                                            "description": "Get average note for all students.",
+                                            "type": "float"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Student": {
+                "description": "Student model",
+                "required": [
+                    "lastName",
+                    "firstName",
+                    "birthDate"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Identifier.",
+                        "type": "integer",
+                        "example": "12"
+                    },
+                    "last_name": {
+                        "description": "Last name.",
+                        "type": "string",
+                        "example": "UNLU"
+                    },
+                    "first_name": {
+                        "description": "Last name.",
+                        "type": "string",
+                        "example": "izzetali"
+                    },
+                    "birth_date": {
+                        "description": "Birth date.",
+                        "type": "string",
+                        "format": "date",
+                        "example": "1981-03-22"
+                    }
+                },
+                "type": "object"
+            },
+            "SubjectNote": {
+                "description": "Subject note model",
+                "required": [
+                    "subject",
+                    "note",
+                    "student"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Identifier.",
+                        "type": "integer",
+                        "example": "12"
+                    },
+                    "subject": {
+                        "description": "Subject.",
+                        "type": "string",
+                        "example": "Histoire"
+                    },
+                    "note": {
+                        "description": "Note.",
+                        "type": "float",
+                        "example": "12.50"
+                    },
+                    "student": {
+                        "description": "Student.",
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "StudentInformation": {
+                "description": "Student informations",
+                "properties": {
+                    "last_name": {
+                        "type": "string",
+                        "example": "UNLU"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "example": "izzetali"
+                    },
+                    "birth_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "1981-03-22"
+                    }
+                },
+                "type": "object"
+            },
+            "SubjectNoteInformation": {
+                "description": "Subject note informations",
+                "properties": {
+                    "subject": {
+                        "type": "string",
+                        "example": "Mathematique"
+                    },
+                    "note": {
+                        "type": "float",
+                        "example": "12"
+                    },
+                    "student_id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
