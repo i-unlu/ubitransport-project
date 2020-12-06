@@ -28,9 +28,9 @@ class StudentController extends AbstractFOSRestController
      *  tags={"Student"},
      *  operationId="addStudent",
      *  @OA\RequestBody(
-     *      description="Student informations to add",
+     *      description="Student information model",
      *      required=true,
-     *      @OA\JsonContent(ref="#/components/schemas/Student"),
+     *      @OA\JsonContent(ref="#/components/schemas/StudentInformation"),
      *  ),
      *  @OA\Response(
      *      response=201,
@@ -80,14 +80,12 @@ class StudentController extends AbstractFOSRestController
      *      in="path",
      *      description="student to edit",
      *      required=true,
-     *      @OA\Schema(
-     *          type="integer"
-     *      ),
+     *      @OA\Schema(type="integer", description="identifier of an student to edit")
      *  ),
      *  @OA\RequestBody(
-     *      description="Student informations to edit",
+     *      description="Student information model",
      *      required=true,
-     *      @OA\JsonContent(ref="#/components/schemas/Student"),
+     *      @OA\JsonContent(ref="#/components/schemas/StudentInformation"),
      *  ),
      *  @OA\Response(
      *      response=200,
@@ -99,7 +97,7 @@ class StudentController extends AbstractFOSRestController
      *  ),
      *  @OA\Response(
      *      response="422",
-     *      description="Request body not matching with student model"
+     *      description="Request body not matching with student information model"
      *  )
      * )
      *
@@ -146,7 +144,7 @@ class StudentController extends AbstractFOSRestController
      *      in="path",
      *      description="student to delete",
      *      required=true,
-     *      @OA\Schema(ref="#/components/schemas/Student")
+     *      @OA\Schema(type="integer", description="identifier of an student to delete")
      *  ),
      *  @OA\Response(
      *      response=204,
@@ -154,7 +152,7 @@ class StudentController extends AbstractFOSRestController
      *  ),
      *  @OA\Response(
      *      response="404",
-     *      description="Student no found"
+     *      description="studentToDelete identifier in path no found"
      *  )
      * )
      *

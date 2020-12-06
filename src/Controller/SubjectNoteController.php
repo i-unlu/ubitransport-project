@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Student;
 use App\Entity\SubjectNote;
 use App\Helper\RequestBodyViolationHelper;
 use App\Repository\SubjectNoteRepository;
@@ -27,14 +26,10 @@ class SubjectNoteController extends AbstractFOSRestController
      *  security={{"bearer":{}}},
      *  tags={"SubjectNote"},
      *  operationId="addSubjectNote",
-     *  @OA\Parameter(
-     *      name="subjectNote",
-     *      in="query",
-     *      description="subject note to add",
+     *  @OA\RequestBody(
+     *      description="Subject note information model",
      *      required=true,
-     *      @OA\Schema(
-     *          ref="#/components/schemas/SubjectNote"
-     *      ),
+     *      @OA\JsonContent(ref="#/components/schemas/SubjectNoteInformation"),
      *  ),
      *  @OA\Response(
      *      response=201,
@@ -43,12 +38,11 @@ class SubjectNoteController extends AbstractFOSRestController
      *  ),
      *  @OA\Response(
      *      response="404",
-     *      description="Student no found"
+     *      description="Student identifier in request body no found"
      *  ),
      *  @OA\Response(
      *      response="422",
-     *      description="Invalid subject note",
-     *      @OA\JsonContent(ref="#/components/schemas/ErrorModel")
+     *      description="Request body not matching with student model"
      *  )
      * )
      *

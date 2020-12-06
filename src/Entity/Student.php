@@ -48,7 +48,7 @@ class Student
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
-     * @OA\Property(type="string", example="UNLU")
+     * @OA\Property(type="string", property="last_name", example="UNLU")
      * @Expose()
      * @Serializer\Type("string")
      * @Assert\NotBlank()
@@ -61,7 +61,7 @@ class Student
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
-     * @OA\Property(type="string", example="izzetali")
+     * @OA\Property(type="string", property="first_name", example="izzetali")
      * @Expose()
      * @Serializer\Type("string")
      * @Assert\NotBlank()
@@ -74,7 +74,7 @@ class Student
      * @var \DateTimeInterface
      *
      * @ORM\Column(name="birth_date", type="date")
-     * @OA\Property(type="string", format="date", example="1981-03-22")
+     * @OA\Property(type="string", property="birth_date", format="date", example="1981-03-22")
      * @Expose()
      * @Serializer\Type("DateTime<'Y-m-d'>")
      * @Assert\NotBlank()

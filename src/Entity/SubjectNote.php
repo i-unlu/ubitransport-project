@@ -78,6 +78,7 @@ class SubjectNote
      * @OA\Property(
      *     type="object",
      *     @OA\Schema(ref="#/components/schemas/Student")
+     *
      * )
      * @Assert\Valid()
      * @Expose()
