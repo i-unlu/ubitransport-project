@@ -65,6 +65,11 @@ class SubjectNote
      * @Expose()
      * @Serializer\Type("float")
      * @Assert\NotBlank()
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 20,
+     *      notInRangeMessage = "A note must be between {{ min }} and {{ max }}",
+     * )
      */
     private $note;
 
