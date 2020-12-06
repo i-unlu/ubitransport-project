@@ -20,6 +20,8 @@ final class Version20201206001734 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE DATABASE IF NOT EXISTS ubi;');
+        $this->addSql('CREATE DATABASE IF NOT EXISTS ubi_test;');
         $this->addSql('CREATE TABLE student (id INT AUTO_INCREMENT NOT NULL, last_name VARCHAR(255) NOT NULL, first_name VARCHAR(255) NOT NULL, birth_date DATE NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE subject_note (id INT AUTO_INCREMENT NOT NULL, student_id INT NOT NULL, subject VARCHAR(255) NOT NULL, note NUMERIC(4, 2) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX IDX_5D777ECFCB944F1A (student_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE subject_note ADD CONSTRAINT FK_5D777ECFCB944F1A FOREIGN KEY (student_id) REFERENCES student (id)');
@@ -31,5 +33,7 @@ final class Version20201206001734 extends AbstractMigration
         $this->addSql('ALTER TABLE subject_note DROP FOREIGN KEY FK_5D777ECFCB944F1A');
         $this->addSql('DROP TABLE student');
         $this->addSql('DROP TABLE subject_note');
+        $this->addSql('DROP DATABASE IF EXISTS ubi;');
+        $this->addSql('DROP DATABASE IF EXISTS ubi_test;');
     }
 }
