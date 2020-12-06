@@ -95,7 +95,7 @@ class StudentController extends AbstractFOSRestController
      *      description="student to edit",
      *      required=true,
      *      @OA\Schema(
-     *          ref="#/components/schemas/Student"
+     *          type="integer"
      *      ),
      *  ),
      *  @OA\Parameter(
@@ -104,7 +104,8 @@ class StudentController extends AbstractFOSRestController
      *      description="student informations for edition",
      *      required=true,
      *      @OA\Schema(
-     *          ref="#/components/schemas/Student"
+     *          ref="#/components/schemas/Student",
+     *          format="json"
      *      ),
      *  ),
      *  @OA\Response(
@@ -119,14 +120,6 @@ class StudentController extends AbstractFOSRestController
      *      response="422",
      *      description="Invalid student",
      *      @OA\JsonContent(ref="#/components/schemas/ErrorModel")
-     *  ),
-     *  @OA\Response(
-     *      response="503",
-     *      description="Maintenance site"
-     *  ),
-     *  @OA\Response(
-     *      response="default",
-     *      description="an ""unexpected"" error"
      *  )
      * )
      *
