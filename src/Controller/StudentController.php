@@ -196,7 +196,7 @@ class StudentController extends AbstractFOSRestController
      *      in="path",
      *      description="student for which the average is calculated",
      *      required=true,
-     *      @OA\Schema(ref="#/components/schemas/Student")
+     *      @OA\Schema(type="integer", description="identifier of an student for which the average is calculated")
      *  ),
      *  @OA\Response(
      *      response=200,
@@ -208,7 +208,7 @@ class StudentController extends AbstractFOSRestController
      *  ),
      *  @OA\Response(
      *      response="404",
-     *      description="Student no found"
+     *      description="student identifier in path no found"
      *  )
      * )
      *

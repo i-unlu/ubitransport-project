@@ -136,7 +136,8 @@
                         "description": "student for which the average is calculated",
                         "required": true,
                         "schema": {
-                            "$ref": "#/components/schemas/Student"
+                            "description": "identifier of an student for which the average is calculated",
+                            "type": "integer"
                         }
                     }
                 ],
@@ -146,10 +147,14 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "required": [
+                                        "average"
+                                    ],
                                     "properties": {
                                         "average": {
                                             "description": "Get average note for a student.",
-                                            "type": "float"
+                                            "type": "float",
+                                            "example": "11.89"
                                         }
                                     },
                                     "type": "object"
@@ -158,7 +163,7 @@
                         }
                     },
                     "404": {
-                        "description": "Student no found"
+                        "description": "student identifier in path no found"
                     }
                 }
             }
@@ -309,6 +314,24 @@
                 },
                 "type": "object"
             },
+            "SubjectNoteInformation": {
+                "description": "Subject note information model",
+                "properties": {
+                    "subject": {
+                        "type": "string",
+                        "example": "Mathematique"
+                    },
+                    "note": {
+                        "type": "float",
+                        "example": "12"
+                    },
+                    "student_id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
             "StudentInformation": {
                 "description": "Student informations",
                 "properties": {
@@ -324,24 +347,6 @@
                         "type": "string",
                         "format": "date",
                         "example": "1981-03-22"
-                    }
-                },
-                "type": "object"
-            },
-            "SubjectNoteInformation": {
-                "description": "Subject note informations",
-                "properties": {
-                    "subject": {
-                        "type": "string",
-                        "example": "Mathematique"
-                    },
-                    "note": {
-                        "type": "float",
-                        "example": "12"
-                    },
-                    "student_id": {
-                        "type": "integer",
-                        "example": "1"
                     }
                 },
                 "type": "object"
