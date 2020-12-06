@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Student;
 use App\Helper\RequestBodyViolationHelper;
+use App\Model\StudentInformation;
 use App\Repository\SubjectNoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -21,20 +22,15 @@ class StudentController extends AbstractFOSRestController
      * Add a student.
      *
      * @OA\Post(
-     *  path="",
+     *  path="/student",
      *  summary="Add a student",
      *  description="Add a student",
-     *  security={{"bearer":{}}},
      *  tags={"Student"},
      *  operationId="addStudent",
-     *  @OA\Parameter(
-     *      name="student",
-     *      in="query",
-     *      description="student information to add",
+     *  @OA\RequestBody(
+     *      description="Student informations to edit",
      *      required=true,
-     *      @OA\Schema(
-     *          ref="#/components/schemas/Student"
-     *      ),
+     *      @OA\JsonContent(ref="#/components/schemas/Student"),
      *  ),
      *  @OA\Response(
      *      response=201,
@@ -43,16 +39,8 @@ class StudentController extends AbstractFOSRestController
      *  ),
      *  @OA\Response(
      *      response="422",
-     *      description="Invalid student",
+     *      description="Request body not matching with student model",
      *      @OA\JsonContent(ref="#/components/schemas/ErrorModel")
-     *  ),
-     *  @OA\Response(
-     *      response="503",
-     *      description="Maintenance site"
-     *  ),
-     *  @OA\Response(
-     *      response="default",
-     *      description="an ""unexpected"" error"
      *  )
      * )
      *
@@ -82,8 +70,8 @@ class StudentController extends AbstractFOSRestController
     /**
      * Edit a student.
      *
-     * @OA\Post(
-     *  path="/{studentToEdit}",
+     * @OA\Put(
+     *  path="/student/{studentToEdit}",
      *  summary="Edit a student",
      *  description="Edit a student",
      *  security={{"bearer":{}}},
@@ -98,15 +86,10 @@ class StudentController extends AbstractFOSRestController
      *          type="integer"
      *      ),
      *  ),
-     *  @OA\Parameter(
-     *      name="studentInformations",
-     *      in="query",
-     *      description="student informations for edition",
+     *  @OA\RequestBody(
+     *      description="Student informations to edit",
      *      required=true,
-     *      @OA\Schema(
-     *          ref="#/components/schemas/Student",
-     *          format="json"
-     *      ),
+     *      @OA\JsonContent(ref="#/components/schemas/Student"),
      *  ),
      *  @OA\Response(
      *      response=200,
@@ -114,12 +97,11 @@ class StudentController extends AbstractFOSRestController
      *  ),
      *  @OA\Response(
      *      response="404",
-     *      description="Student no found"
+     *      description="studentToEdit identifier in path no found"
      *  ),
      *  @OA\Response(
      *      response="422",
-     *      description="Invalid student",
-     *      @OA\JsonContent(ref="#/components/schemas/ErrorModel")
+     *      description="Request body not matching with student model"
      *  )
      * )
      *
@@ -178,14 +160,6 @@ class StudentController extends AbstractFOSRestController
      *  @OA\Response(
      *      response="404",
      *      description="Student no found"
-     *  ),
-     *  @OA\Response(
-     *      response="503",
-     *      description="Maintenance site"
-     *  ),
-     *  @OA\Response(
-     *      response="default",
-     *      description="an ""unexpected"" error"
      *  )
      * )
      *
@@ -210,7 +184,7 @@ class StudentController extends AbstractFOSRestController
      * Get average note for a student.
      *
      * @OA\Get(
-     *  path="/{student}/average-note",
+     *  path="/student/{student}/average-note",
      *  summary="Get average note for a student",
      *  description="Get average note for a student",
      *  security={{"bearer":{}}},
@@ -238,14 +212,6 @@ class StudentController extends AbstractFOSRestController
      *  @OA\Response(
      *      response="404",
      *      description="Student no found"
-     *  ),
-     *  @OA\Response(
-     *      response="503",
-     *      description="Maintenance site"
-     *  ),
-     *  @OA\Response(
-     *      response="default",
-     *      description="an ""unexpected"" error"
      *  )
      * )
      *

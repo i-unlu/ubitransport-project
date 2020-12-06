@@ -21,7 +21,7 @@ class SubjectNoteController extends AbstractFOSRestController
      * Add a subject note.
      *
      * @OA\Post(
-     *  path="",
+     *  path="/subject-note",
      *  summary="Add a subject note",
      *  description="Add a subject note",
      *  security={{"bearer":{}}},
@@ -49,14 +49,6 @@ class SubjectNoteController extends AbstractFOSRestController
      *      response="422",
      *      description="Invalid subject note",
      *      @OA\JsonContent(ref="#/components/schemas/ErrorModel")
-     *  ),
-     *  @OA\Response(
-     *      response="503",
-     *      description="Maintenance site"
-     *  ),
-     *  @OA\Response(
-     *      response="default",
-     *      description="an ""unexpected"" error"
      *  )
      * )
      *
@@ -87,7 +79,7 @@ class SubjectNoteController extends AbstractFOSRestController
      * Get average note for all students.
      *
      * @OA\Get(
-     *  path="/average-note",
+     *  path="/subject-note/average-note",
      *  summary="Get average note for all students",
      *  description="Get average note for all students",
      *  security={{"bearer":{}}},
@@ -102,14 +94,6 @@ class SubjectNoteController extends AbstractFOSRestController
      *              type="float"
      *          )
      *     )
-     *  ),
-     *  @OA\Response(
-     *      response="503",
-     *      description="Maintenance site"
-     *  ),
-     *  @OA\Response(
-     *      response="default",
-     *      description="an ""unexpected"" error"
      *  )
      * )
      *

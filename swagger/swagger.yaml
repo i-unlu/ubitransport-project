@@ -7,8 +7,40 @@ servers:
     url: 'http://api.ubitransport.student-grading.fr/v1'
     description: 'Api Ubitransport Student Grading'
 paths:
-  '/{studentToEdit}':
+  /student:
     post:
+      tags:
+        - Student
+      summary: 'Add a student'
+      description: 'Add a student'
+      operationId: addStudent
+      parameters:
+        -
+          name: student
+          in: query
+          description: 'student information to add'
+          required: true
+          schema:
+            $ref: '#/components/schemas/Student'
+      responses:
+        '201':
+          description: 'Student added'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+        '422':
+          description: 'Invalid student'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+        '503':
+          description: 'Maintenance site'
+        default:
+          description: 'an "unexpected" error'
+  '/student/{studentToEdit}':
+    put:
       tags:
         - Student
       summary: 'Edit a student'
@@ -22,24 +54,20 @@ paths:
           required: true
           schema:
             type: integer
-        -
-          name: studentInformations
-          in: query
-          description: 'student informations for edition'
-          required: true
-          schema:
-            $ref: '#/components/schemas/Student'
+      requestBody:
+        description: 'Student informations to edit'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentInformation'
       responses:
         '200':
           description: 'Student edited'
         '404':
-          description: 'Student no found'
+          description: 'studentToEdit identifier in path no found'
         '422':
-          description: 'Invalid student'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
+          description: 'Request body not matching with student model'
       security:
         -
           bearer: []
@@ -70,7 +98,7 @@ paths:
       security:
         -
           bearer: []
-  '/{student}/average-note':
+  '/student/{student}/average-note':
     get:
       tags:
         - Student
@@ -103,7 +131,44 @@ paths:
       security:
         -
           bearer: []
-  /average-note:
+  /subject-note:
+    post:
+      tags:
+        - SubjectNote
+      summary: 'Add a subject note'
+      description: 'Add a subject note'
+      operationId: addSubjectNote
+      parameters:
+        -
+          name: subjectNote
+          in: query
+          description: 'subject note to add'
+          required: true
+          schema:
+            $ref: '#/components/schemas/SubjectNote'
+      responses:
+        '201':
+          description: 'Subject note added'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubjectNote'
+        '404':
+          description: 'Student no found'
+        '422':
+          description: 'Invalid subject note'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+        '503':
+          description: 'Maintenance site'
+        default:
+          description: 'an "unexpected" error'
+      security:
+        -
+          bearer: []
+  /subject-note/average-note:
     get:
       tags:
         - SubjectNote
@@ -152,14 +217,6 @@ components:
           type: string
           format: date
           example: '1981-03-22'
-        createdAt:
-          type: string
-          format: date-time
-          example: '2020-03-13 12:10:45+01:00'
-        updatedAt:
-          type: string
-          format: date-time
-          example: '2020-03-13 12:10:45+01:00'
       type: object
     SubjectNote:
       description: 'Subject note model'
@@ -183,12 +240,22 @@ components:
         student:
           description: Student.
           type: object
-        createdAt:
+      type: object
+    StudentInformation:
+      description: 'Student information model'
+      required:
+        - lastName
+        - firstName
+        - birthDate
+      properties:
+        lastName:
           type: string
-          format: date-time
-          example: '2020-03-13 12:10:45+01:00'
-        updatedAt:
+          example: UNLU
+        firstName:
           type: string
-          format: date-time
-          example: '2020-03-13 12:10:45+01:00'
+          example: izzetali
+        birthDate:
+          type: string
+          format: date
+          example: '1981-03-22'
       type: object
